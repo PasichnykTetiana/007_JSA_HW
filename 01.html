@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<br name="form1">
+    Имя:
+    <input type="text" name="userName" /><br />
+    телефон: +380
+    <input type="text" name="email" /><br />
+    zipcode:
+
+    <input type="text" name="zip" /><br />
+    <input name="dzen" type="radio" value="s">Маленькая
+    <input name="dzen" type="radio" value="m">Средняя
+    <input name="dzen" type="radio" value="l" checked>Большая</br>
+
+    <input type="submit"/>
+</form>
+<script>
+    // регистрация события загрузки документа.
+    if (window.addEventListener) window.addEventListener("load", init, false);
+    // else if (window.attachEvent) window.attachEvent("onload", init);
+
+    // регистрация обработчиков событий элементов формы.
+    function init() {
+        form1.userName.onchange = nameOnChange;
+        form1.email.onchange = emailOnChange;
+        form1.zip.onchange = zipcodeOnChange;
+        form1.onsubmit = onsubmiHandler;
+    }
+
+    // метод проверки значения в элементе по регулярному выражению.
+    function validate(elem, pattern) {
+        let res = elem.value.search(pattern);
+        if (res == -1) elem.className = "invalid"; // установка CSS класса
+        else elem.className = "valid";
+    }
+
+    // обработчики событий изменения текста в окне.
+    function nameOnChange() {
+        let pattern = /\S/;
+        validate(this, pattern); // отправит в валидейт то собітие
+    }
+
+    function emailOnChange() {
+        let pattern =  /\d{9}/;
+        validate(this, pattern);
+    }
+
+    function zipcodeOnChange() {
+        let pattern = /\d{5}/;
+        validate(this, pattern);
+    }
+
+    // событие при отправке формы на сервер.
+    function onsubmiHandler() {
+
+        let invalid = false;
+        for (let i = 0; i < form1.elements.length; ++i) {
+            let e = form1.elements[i];
+            console.dir(e);
+            // проверка типа элемента и наличия обработчика события onchange.
+            if (e.type == "text" && e.onchange) {
+                e.onchange(); // запуск события onchanhe
+                if (e.className == "invalid") invalid = true;
+            }
+        }
+
+        if (invalid) {
+            alert("Допущены ошибки при заполнении формы.");
+            return false; // отмена отправки формы.
+        }
+    }
+</script>
+</body>
+</html>
