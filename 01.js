@@ -75,7 +75,7 @@ function OBH(){
 }
 // регистрация события загрузки документа.
 if (window.addEventListener) window.addEventListener("load", init, false);
-
+(console.log(form1.userName));
 function init() {
     form1.userName.onchange = nameOnChange;
     form1.email.onchange = emailOnChange;
