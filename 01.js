@@ -61,7 +61,7 @@ if (window.addEventListener) window.addEventListener("load", init, false);
 (console.log(form1.userName));
 function init() {
     form1.userName.onchange = nameOnChange;
-    form1.email.onchange = emailOnChange;
+    form1.email.onchange = phonelOnChange;
     form1.city.onchange = cityOnChange;
     form1.street.onchange = streetOnChange;
     form1.apartment.onchange = apartmentOnChange;
@@ -78,7 +78,7 @@ function nameOnChange() {
     validate(this, pattern); // отправит в валидейт то собітие
 }
 
-function emailOnChange() {
+function phonelOnChange() {
     let pattern =  /\d{9}/;
     validate(this, pattern);
 }
