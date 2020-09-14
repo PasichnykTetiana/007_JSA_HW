@@ -14,46 +14,29 @@ for (let i=0; i<price.length; i++){
 }
 let t=0,
     pizza=3;
-s.onclick = function () {
-    pizza=3;
-    total=0;
-    for (let i=0; i<price.length; i++){
-        price[i].innerHTML = " " + arr[i];
-        check[i].value = arr[i];
-        if (check[i].checked){
-            total+=Number(check[i].value);
 
-        }
-        console.log(total)
-    }
-    sum.innerHTML =3+total;
-};
-m.onclick = function () {
-    pizza=4;
+function Size(x, y){
+    pizza = y;
     total=0;
     for (let i=0; i<price.length; i++){
-        price[i].innerHTML = " " + arr[i]*2;
-        check[i].value = arr[i]*2;
-        if (check[i].checked){
-            total+=Number(check[i].value);
-        }
-        console.log(total)
-    }
-    sum.innerHTML = pizza+total;
-};
-l.onclick = function () {
-    pizza = 5;
-    total=0;
-    for (let i=0; i<price.length; i++){
-        price[i].innerHTML = " " + arr[i]*4;
-        check[i].value = arr[i]*4;
+        price[i].innerHTML = " " + arr[i]*x;
+        check[i].value = arr[i]*x;
         if (check[i].checked){
             total+=Number(check[i].value);
         }
         console.log(total)
     }
     sum.innerHTML = pizza + total;
-};
+}
+s.addEventListener("click", function(){
+    Size(1, 3);
+}); 
+m.addEventListener("click", function(){
+    Size(2, 4);
+});
+l.addEventListener("click", function(){
+    Size(4, 5);
+});
 
 for (let i=0; i<check.length; i++){
     check[i].onchange = OBH;
